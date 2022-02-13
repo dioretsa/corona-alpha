@@ -14,8 +14,8 @@
 
 
 // Do not edit this area
-const dataURL = "https://apiv2.corona-live.com/domestic-init.json"
-const data = await new Request(dataURL).loadJSON()
+const dataURL = "https://apiv3.corona-live.com"
+const data = await new Request(`${dataURL}/domestic/stat.json`).loadJSON()
 const sourceURL = "https://corona-live.com"
 const version = 201
 const version2 = "2.0.1"
@@ -533,20 +533,20 @@ var aftGuCode = aftData.gu
 
 // From Corona Live
 const getData = async () => {
-  let request = new Request(dataURL)
-  let data = await request.loadJSON()
+  let stat = await new Request(`${dataURL}/domestic/stat.json`).loadJSON()
+  let live = await new Request(`${dataURL}/domestic/live.json`).loadJSON()
   console.log("* [Stats] 데이터를 받아왔습니다.")
   
   return {
-   "liveToday": data.statsLive.today,
-   "liveYesterday": data.statsLive.yesterday,
-   "liveWeekAgo": data.statsLive.weekAgo,
-   "liveTwoWeeks": data.statsLive.twoWeeksAgo,
-   "liveMonthAgo": data.statsLive.monthAgo,
-   "casesAll": data.stats.cases[0],
-   "casesGap": data.stats.cases[1],
-   "deathsAll": data.stats.deaths[0],
-   "deathsGap": data.stats.deaths[1],
+   "liveToday": live.live.today,
+   "liveYesterday": live.live.yesterday,
+   "liveWeekAgo": live.live.weekAgo,
+   "liveTwoWeeks": live.live.twoWeeksAgo,
+   "liveMonthAgo": live.live.monthAgo,
+   "casesAll": stat.overview.confirmed[0],
+   "casesGap": stat.overview.confirmed[1],
+   "deathsAll": stat.overview.deceased[0],
+   "deathsGap": stat.overview.deceased[1],
    //"recoverAll": data.stats.recovered[0],
    //"recoverGap": data.stats.recovered[1],
    //"testsGap": data.stats.testing[1] + data.stats.negatives[1]
