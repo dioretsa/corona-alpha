@@ -17,8 +17,8 @@
 const dataURL = "https://apiv3.corona-live.com"
 const data = await new Request(`${dataURL}/domestic/stat.json`).loadJSON()
 const sourceURL = "https://corona-live.com"
-const version = 201
-const version2 = "2.0.1"
+const version = 202
+const version2 = "2.0.2"
 
 const today = new Date()
 
@@ -195,7 +195,7 @@ if(config.runsInApp) {
   menu.addRow(option1)
   
   option1.onSelect = async (number) => {
-    var guJSON = await new Request("https://github.com/unvsDev/corona-alpha/raw/main/guData.json").loadJSON()
+    var guJSON = await new Request("https://github.com/dioretsa/corona-alpha/raw/2/guData.json").loadJSON()
     var guSupport = guJSON.support
     
     let regionMenu = new UITable()
@@ -476,7 +476,7 @@ if(config.runsInApp) {
   menu.addRow(option8)
   
   option8.onSelect = () => {
-    Safari.openInApp("https://github.com/unvsDev/corona-alpha", false)
+    Safari.openInApp("https://github.com/dioretsa/corona-alpha", false)
   }
   
   const option9 = new UITableRow()
@@ -504,8 +504,8 @@ async function sendNotification(title, message){
 }
 
 // Script Auto Update
-const uServer = "https://github.com/unvsDev/corona-alpha/raw/main/VERSION"
-const cServer = "https://github.com/unvsDev/corona-alpha/raw/main/Corona%20Alpha.js"
+const uServer = "https://github.com/dioretsa/corona-alpha/raw/2/VERSION"
+const cServer = "https://github.com/dioretsa/corona-alpha/raw/2/Corona%20Alpha.js"
 var minVer = parseInt(await new Request(uServer).loadString())
 if(version < minVer){
   var code = await new Request(cServer).loadString()
