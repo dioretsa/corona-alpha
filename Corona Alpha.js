@@ -387,6 +387,7 @@ if(config.runsInApp) {
     shortcutAlert.addAction(menu1)
     shortcutAlert.addAction(menu2)
     shortcutAlert.addAction(menu3)
+    shortcutAlert.addAction(menu4)
     shortcutAlert.addCancelAction(language == "ko" ? "취소" : "Cancel")
     
     let response = await shortcutAlert.present()
