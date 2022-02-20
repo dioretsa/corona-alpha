@@ -17,8 +17,8 @@
 const dataURL = "https://apiv3.corona-live.com"
 const data = await new Request(`${dataURL}/domestic/stat.json`).loadJSON()
 const sourceURL = "https://corona-live.com"
-const version = 203
-const version2 = "2.0.3"
+const version = 204
+const version2 = "2.0.4"
 
 const today = new Date()
 
