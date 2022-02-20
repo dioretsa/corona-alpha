@@ -17,8 +17,8 @@
 const dataURL = "https://apiv3.corona-live.com"
 const data = await new Request(`${dataURL}/domestic/stat.json`).loadJSON()
 const sourceURL = "https://corona-live.com"
-const version = 202
-const version2 = "2.0.2"
+const version = 203
+const version2 = "2.0.3"
 
 const today = new Date()
 
@@ -375,10 +375,12 @@ if(config.runsInApp) {
     var menu1 = language == "ko" ? "코로나 라이브 사이트" : "Corona Live Website"
     var menu2 = language == "ko" ? "네이버 QR 체크인" : "Naver QR Check-In"
     var menu3 = language == "ko" ? "카카오 QR 체크인" : "Kakao QR Check-In"
+    var menu4 = language == "ko" ? "COOV QR 체크인" : "COOV QR Check-In"
     var currentLink
     if(usrData.link == "live") { currentLink = menu1 }
     else if(usrData.link == "naver") { currentLink = menu2 }
     else if(usrData.link == "kakao") { currentLink = menu3 }
+    else if(usrData.link == "coov") { currentLink = menu4 }
     let shortcutAlert = new Alert()
     shortcutAlert.title = language == "ko" ? "위젯 바로가기 설정" : "Set widget shortcut"
     shortcutAlert.message = language == "ko" ? "위젯을 클릭했을 때 원하는 링크로 빠르게 이동할 수 있습니다.\n현재 설정값은 \"" + currentLink + "\"입니다." : "Tap widget in home screen to surf through Covid-19 Services for South Korea. Currently set to \"" + currentLink + "\"."
@@ -392,6 +394,7 @@ if(config.runsInApp) {
     if(response == 0){ usrData.link = "live" }
     else if(response == 1){ usrData.link = "naver" }
     else if(response == 2){ usrData.link = "kakao" }
+    else if(response == 3){ usrData.link = "coov" }
   }
   
   const wallOption = new UITableRow()
@@ -817,6 +820,7 @@ cwidget.refreshAfterDate = new Date(Date.now() + 1000 * 120) // Refresh every 12
 if(aftData.link == "live") { cwidget.url = "https://corona-live.com" }
 else if(aftData.link == "naver") { cwidget.url = "https://nid.naver.com/login/privacyQR" }
 else if(aftData.link == "kakao") { cwidget.url = "kakaotalk://con/web?url=https://accounts.kakao.com/qr_check_in" }
+else if(aftData.link == "coov") { cwidget.url = "coov://" }
 cwidget.setPadding(12, 12, 12, 12)
 if(aftData.wall == ""){
   cwidget.backgroundColor = new Color("#333")
